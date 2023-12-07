@@ -7,7 +7,7 @@
             <th style="width: 30%">UserName</th>
             <th style="width: 30%">Email</th>
             <th style="width: 30%">PhoneNumber</th>
-            
+            <th style="width: 30%">Roles</th>
             <th style="width: 30%">Actions</th>
 
         </tr>
@@ -17,7 +17,13 @@
             <td>{{user.userName}}</td>
             <td>{{user.email}}</td>
             <td>{{user.phoneNumber}}</td>
-            <!-- <td *ngFor="let role of roles">{{role.name}}</td> -->
+            <td>
+                <span *ngFor="let role of user.roles">
+                  
+                    {{ role.name }}
+                  
+                </span>
+              </td>
             
             <td style="white-space: nowrap">
                 <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary me-1">Edit</a>

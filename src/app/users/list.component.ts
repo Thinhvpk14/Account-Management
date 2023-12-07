@@ -3,6 +3,8 @@ import { first } from 'rxjs/operators';
 import { AccountService } from '@app/_services';
 import { User } from '@app/_models/user';
 import { map } from 'rxjs/operators';
+import { pipe } from 'rxjs';
+import { Role } from '@app/_models';
 
 @Component({ 
     templateUrl: 'list.component.html' })
@@ -22,7 +24,13 @@ export class ListComponent implements OnInit {
         this.accountService.getAll()
                 .pipe(first())
                 .subscribe((result: any) => {
-                    this.users = result.data     
+                    console.log(result)
+                    this.users = result.data
+                    this.roles = this.users.map((user: any) => {
+                        return user.roles.map((role: any) => role);
+                      });
+                
+                      console.log(this.roles);
                 });
     }
 
