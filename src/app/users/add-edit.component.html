@@ -1,38 +1,26 @@
 ﻿<h1>{{title}}</h1>
 <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="row">
-        <div class="mb-3 col">
-            <label class="form-label">UserName</label>
-            <input type="text" formControlName="UserName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
-            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
-                <div *ngIf="f.userName.errors.required">UserName is required</div>
-            </div>
-        </div>
-        <div class="mb-3 col">
-            <label class="form-label">Email</label>
-            <input type="text" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-            </div>
-        </div>
-        <div class="mb-3 col">
-            <label class="form-label">PhoneNumber</label>
-            <input type="text" formControlName="PhoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-            <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                <div *ngIf="f.phoneNumber.errors.required">PhoneNumber is required</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        
-        
-    </div>
     <div class="mb-3">
-        <button [disabled]="submitting" class="btn btn-primary">
-            <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
-            Save
-        </button>
-        <a routerLink="/users" class="btn btn-link">Cancel</a>
+        <label class="form-label">Email</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+        </div>
+        <label class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+        <label class="form-label">PhoneNumber</label>
+        <input type="text" formControlName="phoneNumber" class="form-control">
+        
+        <div style="padding-top: 10px" class="mb-3">
+            <button [disabled]="submitting" class="btn btn-primary">
+                <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                Save
+            </button>
+            <a routerLink="/users" class="btn btn-link">Cancel</a>
+        </div>
     </div>
 </form>
 <div *ngIf="loading" class="text-center m-5">

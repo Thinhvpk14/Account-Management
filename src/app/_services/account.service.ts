@@ -45,6 +45,10 @@ export class AccountService {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
 
+    insertUser(user: User) {
+        return this.http.post(`${environment.apiUrl}/Account/User`, user);
+    }
+
     getAll() {
         return this.http.get<User>(`${environment.apiUrl}/Account/User?isDeep=true&IsOutputTotal=true`);
     }
@@ -53,20 +57,8 @@ export class AccountService {
         return this.http.get<User>(`${environment.apiUrl}/Account/User/${id}?isDeep=true`);
     }
 
-    update(id: string, params: any) {
-        return this.http.put(`${environment.apiUrl}/Account/User/${id}`, params)
-            .pipe(map(x => {
-                // update stored user if the logged in user updated their own record
-                if (id == this.userValue?.id) {
-                    // update local storage
-                    const user = { ...this.userValue, ...params };
-                    localStorage.setItem('user', JSON.stringify(user));
-
-                    // publish updated user to subscribers
-                    this.userSubject.next(user);
-                }
-                return x;
-            }));
+    update(id: string, user: User) {
+        return this.http.put(`${environment.apiUrl}/Account/User/${id}`, user)    
     }
 
     delete(id: string) {

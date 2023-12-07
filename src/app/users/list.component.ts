@@ -24,13 +24,10 @@ export class ListComponent implements OnInit {
         this.accountService.getAll()
                 .pipe(first())
                 .subscribe((result: any) => {
-                    console.log(result)
                     this.users = result.data
                     this.roles = this.users.map((user: any) => {
                         return user.roles.map((role: any) => role);
                       });
-                
-                      console.log(this.roles);
                 });
     }
 

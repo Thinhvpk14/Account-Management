@@ -13,6 +13,7 @@ export class AddEditComponent implements OnInit {
     loading = false;
     submitting = false;
     submitted = false;
+    currentUser: any
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,10 +29,9 @@ export class AddEditComponent implements OnInit {
 
         // form with validation rules
         this.form = this.formBuilder.group({
-            
-            userName: ['', Validators.required],
+
             email: ['', Validators.required],
-            phoneNumber: ['', Validators.required],
+            password: ['', Validators.required],
             
         });
 
@@ -42,8 +42,8 @@ export class AddEditComponent implements OnInit {
             this.loading = true;
             this.accountService.getById(this.id)
                 .pipe(first())
-                .subscribe(x => {
-                    this.form.patchValue(x);
+                .subscribe((result: any) => {
+                    this.form.patchValue(result);
                     this.loading = false;
                 });
         }
@@ -82,6 +82,6 @@ export class AddEditComponent implements OnInit {
         // create or update user based on id param
         return this.id
             ? this.accountService.update(this.id!, this.form.value)
-            : this.accountService.register(this.form.value);
+            : this.accountService.insertUser(this.form.value)
     }
 }

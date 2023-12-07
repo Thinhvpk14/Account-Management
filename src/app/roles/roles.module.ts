@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from '../layout.component';
 import { RolesRoutingModule } from './roles-routing.module';
 import { RoleListComponent } from './roleList.component';
+import { AddEditComponent } from './add-edit.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RoleListComponent } from './roleList.component';
         RolesRoutingModule
     ],
     declarations: [
-        RoleListComponent
+        RoleListComponent,
+        AddEditComponent
     ]
 })
 export class RolesModule { }

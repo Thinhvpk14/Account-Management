@@ -26,6 +26,18 @@ export class RoleService {
     return this.http.get<Role>(`${environment.apiUrl}/Account/Role?isDeep=true&IsOutputTotal=true`);
   }
 
+  insert(role: Role) {
+    return this.http.post(`${environment.apiUrl}/Account/Role`, role);
+  }
+
+  getById(id: string) {
+    return this.http.get<Role>(`${environment.apiUrl}/Account/Role/${id}?isDeep=true`);
+  }
+
+  update(id: string, role: Role) {
+    return this.http.put(`${environment.apiUrl}/Account/Role/${id}`, role);
+  }
+
   delete(id: string) {
     return this.http.delete(`${environment.apiUrl}/Account/Role/${id}`)
       .pipe(map(x => {
