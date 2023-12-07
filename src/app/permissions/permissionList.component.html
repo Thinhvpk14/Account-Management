@@ -1,0 +1,32 @@
+
+<h1>Polices</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Permission</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 50%">Name</th>
+            <th style="width: 50%">Sort</th>
+            <th style="width: 50%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let permission of permissions">
+            <td>{{permission.name}}</td>
+            <td>{{permission.sort}}</td>
+            
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{permission.id}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                <button routerLink="view/{{permission.id}}" class="btn btn-sm btn-success me-1">View</button>
+                <button class="btn btn-sm btn-danger btn-delete-user" [disabled]="permission.isDeleting" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span *ngIf="permission.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!permission.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!permissions">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

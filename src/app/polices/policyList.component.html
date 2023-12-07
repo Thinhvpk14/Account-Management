@@ -1,0 +1,29 @@
+<h1>Polices</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Policy</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 50%">Name</th>
+            <th style="width: 50%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let policy of polices">
+            <td>{{policy.name}}</td>
+            
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{policy.id}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                <button routerLink="view/{{policy.id}}" class="btn btn-sm btn-success me-1">View</button>
+                <button class="btn btn-sm btn-danger btn-delete-user" [disabled]="policy.isDeleting" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span *ngIf="policy.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!policy.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!polices">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
