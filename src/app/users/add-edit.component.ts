@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '@app/_services';
+import { AccountService, AlertService, RoleService } from '@app/_services';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -15,19 +15,21 @@ export class AddEditComponent implements OnInit {
     submitted = false;
     status = false;
     currentUser: any
-
+    roles: any
+    selectedRoles: any[] = []
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
+        private roleService: RoleService,
         private alertService: AlertService
     ) { }
      
     
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
-
+        this.getAllRole()
         // form with validation rules
         this.form = this.formBuilder.group({
 
@@ -60,6 +62,14 @@ export class AddEditComponent implements OnInit {
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
+    
+    getAllRole(){
+        this.roleService.getAll()
+            .pipe(first())
+            .subscribe((result: any) => {
+                this.roles = result.data
+            })
+    }
 
     onSubmit() {
         this.submitted = true;

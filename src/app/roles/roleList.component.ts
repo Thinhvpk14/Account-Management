@@ -14,6 +14,7 @@ export class RoleListComponent implements OnInit {
         this.roleService.getAll()
             .pipe(first())
             .subscribe((result: any) => {
+                console.log(result)
                 this.roles = result.data
                 this.totalRecords = result.totalRecords               
             });

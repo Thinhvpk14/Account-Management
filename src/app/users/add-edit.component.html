@@ -25,6 +25,13 @@
         </div>       
         <label class="form-label">PhoneNumber</label>
         <input type="text" formControlName="phoneNumber" class="form-control">
+        <label class="form-label">Roles</label>
+        <div>
+            <select class="form-select">
+                <option>Select the data</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role.name }}</option>
+            </select>
+        </div>
         
         <div style="padding-top: 10px" class="mb-3">
             <button [disabled]="submitting" class="btn btn-primary">
