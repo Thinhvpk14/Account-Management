@@ -13,6 +13,7 @@ export class AddEditComponent implements OnInit {
     loading = false;
     submitting = false;
     submitted = false;
+    status = false;
     currentUser: any
 
     constructor(
@@ -32,13 +33,14 @@ export class AddEditComponent implements OnInit {
 
             email: ['', Validators.required],
             password: ['', Validators.required],
-            
-        });
+            confirmPassword: ['', Validators.required]
+        }, {Validators: this.checkPasswords});
 
         this.title = 'Add User';
         if (this.id) {
             // edit mode
             this.title = 'Edit User';
+            this.status = true;
             this.loading = true;
             this.accountService.getById(this.id)
                 .pipe(first())
@@ -47,6 +49,13 @@ export class AddEditComponent implements OnInit {
                     this.loading = false;
                 });
         }
+    }
+
+    checkPasswords(group: FormGroup) {
+        const password = ''
+        const confirmPassword = ''
+
+        return password === confirmPassword ? null : { notMatch: true };
     }
 
     // convenience getter for easy access to form fields
