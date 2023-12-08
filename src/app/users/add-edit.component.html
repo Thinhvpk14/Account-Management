@@ -32,7 +32,6 @@
                 <option *ngFor="let role of roles" [value]="role">{{ role.name }}</option>
             </select>
         </div>
-        
         <div style="padding-top: 10px" class="mb-3">
             <button [disabled]="submitting" class="btn btn-primary">
                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
